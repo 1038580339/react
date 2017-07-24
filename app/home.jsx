@@ -14,6 +14,7 @@ var Home = React.createClass({
         <li><Button value='组件button'/></li>
         <li><Link to='/about'>关于</Link></li>
         <li><Link to='/author'>作者</Link></li>
+        <li><Link to='/app'>千万别点</Link></li>
         </ul>
       </div>
     )

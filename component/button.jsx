@@ -4,7 +4,7 @@ import style from '../css/componentButton.css';
 var Button=React.createClass({
   render(){
     return(
-      <button>{this.props.value}</button>
+      <button>{this.props.value}1</button>
     )
   }
 })
