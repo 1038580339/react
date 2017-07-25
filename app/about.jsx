@@ -2,11 +2,23 @@ import React from 'react';
 import Reflux from 'reflux';
 var Home=require('./home.jsx');
 
-const action = Reflux.createActions(["getValue"]);
+const action = Reflux.createActions(["getValue",'getName']);
 const stores = Reflux.createStore({
-    listenables: [action],
+    value:1,
+    // listenables: [action],
+    init:function(){
+      // this.listenTo(action.getValue,'onGetValue');
+      // this.listenTo(action.getName,'onGetName');
+      //多重寫法
+      this.listenToMany(action);
+    },
     onGetValue: function (value) {
-        this.trigger(value);
+        this.value=this.value+1;
+        this.trigger(this.value);
+    },
+    onGetName:function(value){
+      this.value=this.value-1;
+      this.trigger(this.value);
     }
 });
 const About=React.createClass({
@@ -17,10 +29,11 @@ const About=React.createClass({
       value:1
     };
   },
-  createNewItem: function (event) {
-   var t=this.state.value+1;
-  //  console.log(t);
-    action.getValue(t);
+  add: function (event) {
+    action.getValue();
+  },
+  reduce:function(){
+    action.getName();
   },
   render(){
   // var items = this.state.items;
@@ -31,7 +44,8 @@ const About=React.createClass({
       <div>
 
        <h2>{this.state.value}</h2>
-       <a onClick={this.createNewItem}>点击切换</a>
+       <a onClick={this.add}>加</a>
+        <a onClick={this.reduce} style={{marginLeft:'20px'}}>减</a>
        <Home/>
       </div>
     )
