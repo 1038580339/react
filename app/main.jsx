@@ -4,7 +4,7 @@ var Home = require('./home.jsx');
 var About=require('./about.jsx');
 var Author=require('./author.jsx');
 var App=require('./app.jsx');
-import {Router, Route,hashHistory} from 'react-router';
+import {Router, Route,hashHistory,browserHistory} from 'react-router';
 
 ReactDOM.render(
   (
